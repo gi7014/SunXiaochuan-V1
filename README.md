@@ -43,20 +43,32 @@ library_name: transformers
 
 本模型的训练使用了 [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) 作为微调工具，训练集样本大小为3000条数据，并且修改梯度累计为2，Lora秩为16，Lora+为16等，设备使用单卡4090训练1小时得到。具体训练Loss曲线如下：
 
-![Loss训练曲线](图片路径)
+![Loss训练曲线](https://github.com/gi7014/SunXiaochuan-V1/blob/main/training_loss.png)
+
+同时，模型训练完成后，用其他500条数据进行数据预测和模型评估，得到如下结果：
+
+```json
+{
+    "predict_bleu-4": 2.2241416,
+    "predict_model_preparation_time": 0.0043,
+    "predict_rouge-1": 13.033509999999998,
+    "predict_rouge-2": 1.3886417999999998,
+    "predict_rouge-l": 10.5493132,
+    "predict_runtime": 610.2644,
+    "predict_samples_per_second": 0.819,
+    "predict_steps_per_second": 0.41
+}
+```
 
 ## 3. Model Downloads
 
 ### DeepSeek-R1 Models
 
-<div align="center">
 
 | **Model** | **#Total Params** | **#Activated Params** | **Context Length** | **Download** |
 | :------------: | :------------: | :------------: | :------------: | :------------: |
 | DeepSeek-R1-Zero | 671B | 37B | 128K   | [🤗 HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-R1-Zero)   |
 | DeepSeek-R1   | 671B | 37B |  128K   | [🤗 HuggingFace](https://huggingface.co/deepseek-ai/DeepSeek-R1)   |
-
-</div>
 
 DeepSeek-R1-Zero & DeepSeek-R1 are trained based on DeepSeek-V3-Base. 
 For more details regarding the model architecture, please refer to [DeepSeek-V3](https://github.com/deepseek-ai/DeepSeek-V3) repository.
